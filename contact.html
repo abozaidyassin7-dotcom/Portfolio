@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Yassin</title>
+    <link href="https://fonts.cdnfonts.com/css/devil-breeze" rel="stylesheet" />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Devil Breeze", sans-serif;
+        background-color: #0d0d0d;
+        color: #aaff00;
+        overflow-x: hidden;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background-color: #0a0a0a;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #aaff00;
+        letter-spacing: 1px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 30px;
+        font-size: 16px;
+        transition: 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #aaff00;
+      }
+
+      .contact-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* ✅ makes form clickable */
+        min-height: calc(100vh - 80px);
+        padding: 50px 20px; /* ✅ spacing so header doesn’t overlap */
+        animation: fadeIn 1.5s ease-in-out;
+        position: relative;
+        z-index: 1; /* ✅ ensures form is above other layers */
+      }
+
+      .contact-form {
+        background: linear-gradient(145deg, #0a0a0a, #111);
+        padding: 50px 40px;
+        border: 2px solid #aaff00;
+        border-radius: 20px;
+        max-width: 550px;
+        width: 100%;
+        box-shadow: 0 0 40px #aaff00;
+        animation: slideUp 1s ease-out;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-form:hover {
+        transform: scale(1.02);
+      }
+
+      .contact-form h2 {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 30px;
+        animation: popIn 1s ease-in-out;
+      }
+
+      .contact-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 25px;
+        border: 1px solid #aaff00;
+        border-radius: 10px;
+        background-color: #0d0d0d;
+        color: #aaff00;
+        font-size: 16px;
+        transition: box-shadow 0.3s ease;
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: none;
+        border-color: #00ff55;
+        box-shadow: 0 0 12px #00ff55;
+      }
+
+      .contact-form button {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #aaff00;
+        border-radius: 10px;
+        background-color: transparent;
+        color: #aaff00;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      .contact-form button:hover {
+        background-color: #aaff00;
+        color: #0d0d0d;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        color: #555;
+        background-color: #0a0a0a;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUp {
+        0% {
+          transform: translateY(100px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes popIn {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+
+    <!-- ✅ EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <!-- ✅ EmailJS Setup Script -->
+    <script>
+      (function () {
+        // ✅ Your real Public Key
+        emailjs.init("DF9eprSJYXiuo1uqu");
+      })();
+
+      function sendEmail(e) {
+        e.preventDefault();
+
+        emailjs
+          .sendForm("service_lr2veoh", "template_clo5857", e.target) // ✅ Correct Template ID
+          .then(
+            function (response) {
+              alert(
+                "✅ Message sent successfully to abozaidyassin7@gmail.com!"
+              );
+              e.target.reset();
+            },
+            function (error) {
+              console.error("EmailJS error:", error);
+              alert("❌ Failed to send message. Check console for details.");
+            }
+          );
+      }
+    </script>
+  </head>
+  <body>
+    <!-- ✅ Header -->
+    <header>
+      <div class="logo">Yassin</div>
+      <nav>
+        <a href="index (1).html">Home</a>
+        <a href="Portfolio.html">Portfolio</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ✅ Contact Form -->
+    <div class="contact-container">
+      <form class="contact-form" onsubmit="sendEmail(event)">
+        <h2>Contact Me</h2>
+
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="user_name"
+          placeholder="Your Name"
+          required
+        />
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="user_email"
+          placeholder="Your Email"
+          required
+        />
+
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="6"
+          placeholder="Your Message"
+          required
+        ></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <!-- ✅ Footer -->
+    <footer>&copy; 2025 Yassin. All Rights Reserved.</footer>
+  </body>
+</html>
